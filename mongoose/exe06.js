@@ -20,13 +20,10 @@ var Beer = mongoose.model('Beer', BeerSchema);
 var query = {
     name: 'Heineken'
 };
-var mod = {
-    alcohol: 666
-};
-Beer.update(query, mod, function (err, data) {
+Beer.remove(query, function (err, data) {
     if (err) {
         console.log('Erro: ', err);
     } else {
-        console.log('Cerveja atualizada com sucesso', data);
+        console.log('Cerveja deletada com sucesso', data);
     }
 });
