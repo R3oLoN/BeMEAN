@@ -9,7 +9,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var api = {
-    beers: require('.routes/api/beers');
+    beers: require('./routes/api/beers')
 }
 
 var app = express();
