@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var _beer = require('../../controllers/beers')
+var _beer = require('../../controllers/api/beers')
 
 router.get('/', function(req, res) {
   _beer.retrieve(req, res);
