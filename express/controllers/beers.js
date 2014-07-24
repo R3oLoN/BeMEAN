@@ -37,15 +37,9 @@ module.exports = {
 	},
 	update: function (req, res) {
 		var query = {
-			name: 'Skol'
+			_id: req.params.id
 		};
-		var mod = {
-			alcohol: 99
-		};
-		var optional = {
-			upsert: false,
-			multi: true
-		};
+		var mod = req.body;
 		Beer.update(query, mod, function (err, data) {
 			var msg = 'Cerveja ' + query.name + ' alterada com sucesso';
 			cb(err, data, res, msg);
@@ -53,7 +47,7 @@ module.exports = {
 	},
 	delete: function (req, res) {
 		var query = {
-			name: 'Skol'
+			_id: req.params.id
 		};
 		Beer.remove(query, function (err, data) {
 			var msg = 'Cervejas deletadas: ' + data;
