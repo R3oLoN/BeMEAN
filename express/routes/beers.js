@@ -1,9 +1,10 @@
 var express = require('express');
 var router = express.Router();
+var _beer = require('../controllers/beers');
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render('beers/list', { title: 'Listagem das cervejas' });
+  _beer.renderList(req, res);
 });
 
 module.exports = router;
