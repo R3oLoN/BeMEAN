@@ -1,0 +1,24 @@
+extends ../layout
+
+block content
+    h1 Adega Be MEAN
+
+    p
+        span Name:
+        span #{beer.name}
+        br
+        span Category:
+        span #{beer.category}
+        br
+        span Price: R$
+        span #{beer.price}
+        br
+        span Alcohol:
+        span #{beer.alcohol}
+        br
+        span Description:
+        span #{beer.description}
+        br
+        a(href='/beers/#{beer._id}/edit') Editar
+        br
+        a(href='/beers/#{beer._id}/remove') Remover
