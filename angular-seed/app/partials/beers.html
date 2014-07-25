@@ -1,0 +1,36 @@
+<h2>Adega Be MEAN - Cervejas</h2>
+<table>
+	<thead>
+		<tr>
+			<th data-ng-click="predicate = 'name'; reverse=!reverse">Nome</th>
+			<th data-ng-click="predicate = 'price'; reverse=!reverse">Preço</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr data-ng-repeat='beer in cervejas | orderBy: predicate:reverse'>
+			<td>{{beer.name}}</td>
+			<td>{{beer.price}}</td>
+		</tr>
+	</tbody>
+</table>
+<hr/>
+<div data-ng-controller='UserController'>
+	<div>
+		<label><strong>User: </strong>
+			<input data-ng-model="search">
+		</label>
+	</div>
+	<div>
+		<label><strong>Nickname: </strong>{{user.login}}</label>
+	</div>
+	<div>
+		<label><strong>Nome: </strong>{{user.name}}</label>
+	</div>
+	<div>
+		<label><strong>Blog: </strong>{{user.blog}}</label>
+	</div>
+	<div>
+		<label><strong>Localização: </strong>{{user.location}}</label>
+	</div>
+	<img data-ng-src="{{user.avatar_url}}" width="150" height="150">
+</div>

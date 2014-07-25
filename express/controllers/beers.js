@@ -57,5 +57,19 @@ module.exports = {
         res.render('beers/create', {
             title: 'Consulta de cerveja'
         });
+    },
+    renderRemove: function(req, res) {
+        var query = {_id: req.params.id};
+        Beer.delete(query, function (err, data) {
+            if (err) {
+                res.render('error', {
+                    error: err
+                });
+            }
+            res.render('beers/remove', {
+                title: 'Remoção de cerveja',
+                beer: data
+            });
+        });
     }
 }
