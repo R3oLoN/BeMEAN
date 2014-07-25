@@ -24,9 +24,17 @@
 
 	<div data-ng-controller='UserController'>
 		<button data-ng-click='rodar()'>Click aqui</button>
+		<div>
+			<label>User:<input data-ng-model="userName"></label>
+		</div>
 		<p>
 			{{ user }}
 		</p>
+		<div><label><strong>Nickname:</strong>{{user.login}}</label></div>
+		<div><label><strong>Nome:</strong>{{user.name}}</label></div>
+		<div><label><strong>Blog:</strong>{{user.blog}}</label></div>
+		<div><label><strong>Localização:</strong>{{user.location}}</label></div>
+		<img data-ng-src="{{user.avater_url}}">
 	</div>
 
 	<script src="angular.min.js"></script>
