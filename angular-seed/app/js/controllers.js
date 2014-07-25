@@ -31,8 +31,8 @@ angular.module('myApp.controllers', [])
 			];
 			$scope.cervejas = cervejas;
 		}])
-	.controller('UserController', ['$scope', '$http',
-		function ($scope, $http) {
+	.controller('UserController', ['$scope', '$http','HTTPService',
+		function ($scope, $http, HTTPService) {
 			// delete $http.defaults.headers.common['X-Requested-With'];
 			$scope.search = 'R3oLoN'
 			$scope.$watch('search', function (data) {
@@ -40,11 +40,7 @@ angular.module('myApp.controllers', [])
 			})
 			function searchUser(query) {
 				var url = 'https://api.github.com/users/'+query;
-				var method = 'GET';
-				$http({
-					url: url,
-					method: method
-				}).
+				HTTPService.search(url).
 				success(function (data) {
 					console.log('Data: ', data);
 					$scope.user = data;
