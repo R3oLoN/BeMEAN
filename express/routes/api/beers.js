@@ -6,12 +6,12 @@ router.get('/', function(req, res) {
   _beer.retrieve(req, res);
 });
 
-router.get('/:id', function(req, res) {
-  _beer.findOne(req, res);
-});
-
 router.post('/', function(req, res) {
   _beer.create(req, res);
+});
+
+router.get('/:id', function(req, res) {
+  _beer.findOne(req, res);
 });
 
 router.put('/:id', function(req, res) {

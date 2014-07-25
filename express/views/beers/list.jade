@@ -8,3 +8,5 @@ block content
         for beer in beers
             li
                 a(href="/beers/#{beer._id}") #{beer.name} - #{beer.price}
+                a.btn(href="/beers/#{beer._id}/edit") Editar
+                a.btn(href='/beers/#{beer._id}/remove') Remover

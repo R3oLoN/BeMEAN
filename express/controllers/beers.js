@@ -60,7 +60,7 @@ module.exports = {
     },
     renderRemove: function(req, res) {
         var query = {_id: req.params.id};
-        Beer.delete(query, function (err, data) {
+        Beer.findOne(query, function (err, data) {
             if (err) {
                 res.render('error', {
                     error: err

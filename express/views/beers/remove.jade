@@ -1,0 +1,29 @@
+extends ../layout
+extends ../layout
+
+block content
+    h1= title
+    p Welcome to #{title}
+
+    h1 Adega Be MEAN
+    p= msg
+
+    form(action='/api/beers/#{beer._id}?_method=DELETE',method='POST')
+        p
+            span Name:
+            span #{beer.name}
+            br
+            span Category:
+            span #{beer.category}
+            br
+            span Price: R$
+            span #{beer.price}
+            br
+            span Alcohol:
+            span #{beer.alcohol}
+            br
+            span Description:
+            span #{beer.description}
+            br
+          .form-group
+              input.btn.btn-lg(type='submit', value='Remover')
