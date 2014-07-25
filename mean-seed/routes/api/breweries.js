@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var _beer = require('../../controllers/api/beers');
+var _brewery = require('../../controllers/api/breweries');
 
 var cb = function (err, data, res) {
 	if (err) {
@@ -13,35 +13,31 @@ var cb = function (err, data, res) {
 }
 
 router.get('/', function (req, res) {
-	_beer.retrieve(req, res, cb);
-});
-
-router.get('/populate', function (req, res) {
-	_beer.populate(req, res, cb);
+	_brewery.retrieve(req, res, cb);
 });
 
 router.get('/_id/:id', function (req, res) {
-	_beer.findOneBy_Id(req, res, cb);
+	_brewery.findOneBy_Id(req, res, cb);
 });
 
 router.get('/id/:id', function (req, res) {
-	_beer.findOneById(req, res, cb);
+	_brewery.findOneById(req, res, cb);
 });
 
 router.get('/name/:name', function (req, res) {
-	_beer.findOneByName(req, res, cb);
+	_brewery.findOneByName(req, res, cb);
 });
 
 router.post('/', function (req, res) {
-	_beer.create(req, res, cb);
+	_brewery.create(req, res, cb);
 });
 
 router.put('/_id/:id', function (req, res) {
-	_beer.update(req, res, cb);
+	_brewery.update(req, res, cb);
 });
 
 router.delete('/_id/:id', function (req, res) {
-	_beer.delete(req, res, cb);
+	_brewery.delete(req, res, cb);
 });
 
 module.exports = router;
