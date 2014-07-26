@@ -1,22 +1,11 @@
 p
   span Name:
-  span {{beer.name}}
+  span {{brewery.name}}
   br
-  span Category:
-  span {{beer.category}}
+
+  a(href='/breweries/{{brewery._id}}/edit') Edit
   br
-  span ABV:
-  span {{beer.abv}}
-  br
-  span brewery:
-  span {{beer.brewery.name}}
-  br
-  span Description:
-  span {{beer.description}}
-  br
-  a(href='/beers/{{beer._id}}/edit') Edit
-  br
-  a(href='/beers/{{beer._id}}/remove') Remove
+  a(href='/breweries/{{brewery._id}}/remove') Remove
 
 
 

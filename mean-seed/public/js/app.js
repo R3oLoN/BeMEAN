@@ -30,6 +30,26 @@ config(function ($routeProvider, $locationProvider) {
       templateUrl: 'expose/beers/remove',
       controller: 'BeerRemoveController'
     }).
+    when('/breweries', {
+      templateUrl: 'expose/breweries/list',
+      controller: 'BreweriesListController'
+    }).
+    when('/breweries/add', {
+      templateUrl: 'expose/breweries/create',
+      controller: 'BreweriesCreateController'
+    }).
+    when('/breweries/:id', {
+      templateUrl: 'expose/breweries/show',
+      controller: 'BreweriesShowController'
+    }).
+    when('/breweries/:id/edit', {
+      templateUrl: 'expose/breweries/edit',
+      controller: 'BreweriesEditController'
+    }).
+    when('/breweries/:id/remove', {
+      templateUrl: 'expose/breweries/remove',
+      controller: 'BreweriesRemoveController'
+    }).
     otherwise({
       redirectTo: '/beers'
     });

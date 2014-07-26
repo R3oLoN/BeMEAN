@@ -2,10 +2,10 @@ h3.title List of Beers
 p.message= msg
 
 ul
-  li(data-ng-repeat='beer in beers')
-    a(href='/beers/{{beer._id}}')
-      | {{beer.name}}
-    a(href='/beers/{{beer._id}}/edit')
-    span(data-ng-controller='RemoveBeer')
-      button(data-ng-click='remove(beer)') REMOVER
+  li(data-ng-repeat='brewery in breweries')
+    a(href='/breweries/{{brewery._id}}')
+      | {{brewery.name}}
+    a(href='/breweries/{{brewery._id}}/edit')
+    span(data-ng-controller='RemoveBreweries')
+      button(data-ng-click='remove(brewery)') REMOVER
 

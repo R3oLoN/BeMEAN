@@ -2,24 +2,25 @@
 
 // Helpers
 
-var removeItem = function (arr, item) {
-	var index = arr.indexOf(item);
-	if (index > -1) {
-		arr.splice(index, 1);
+var _brewery = {
+	removeItem: function (arr, item) {
+		var index = arr.indexOf(item);
+		if (index > -1) {
+			arr.splice(index, 1);
+		}
+	},
+	cbFindSuccess: function (data, $scope) {
+		$scope.breweries = data.data;
+		$scope.msg = 'List complete';
+		console.log(data);
+	},
+	cbFindError: function (error, $scope) {
+		$scope.status = 'Unable to load breweries: ' + error.message;
 	}
-}
-
-var cbFindSuccess = function (data, $scope) {
-	$scope.breweries = data.data;
-	$scope.msg = 'List complete';
-	console.log(data);
 };
-var cbFindError = function (error, $scope) {
-	$scope.status = 'Unable to load breweries: ' + error.message;
-}
 
 // Controllers
-angular.module('myApp.controllers', [])
+angular.module('controllers.Breweries', [])
 	.controller('AppCtrl', function ($scope, $http) {
 		$http({
 			method: 'GET',
@@ -30,26 +31,26 @@ angular.module('myApp.controllers', [])
 			$scope.name = 'Error!';
 		});
 	})
-	.controller('RemoveBreweries', ['$scope', '$http', 'BreweriesService',
-		function ($scope, $http, BreweriesService) {
-			var Breweries = BreweriesService;
-			$scope.remove = function (brewere) {
-				if (confirm('Are you sure? Breweries ' + brewere.name + ' will be removed.')) {
-					Breweries.remove(brewere).success(function (data) {
-						removeItem($scope.breweries, brewere);
+	.controller('RemoveBreweries', ['$scope', '$http', 'BreweryService',
+		function ($scope, $http, BreweryService) {
+			var Brewery = BreweryService;
+			$scope.remove = function (brewery) {
+				if (confirm('Are you sure? Breweries ' + brewery.name + ' will be removed.')) {
+					Brewery.remove(brewery).success(function (data) {
+						_brewery.removeItem($scope.breweries, brewery);
 					}).error(function (error) {
 						$scope.status = 'Unable to load breweries: ' + error.message;
 					});
 				}
 			}
 	}])
-	.controller('BreweriesListController', ['$scope', '$http', 'BreweriesService',
-	function ($scope, $http, BreweriesService) {
-			var Breweries = BreweriesService;
-			Breweries.find().then(function (data) {
-				cbFindSuccess(data, $scope);
+	.controller('BreweriesListController', ['$scope', '$http', 'BreweryService',
+		function ($scope, $http, BreweryService) {
+			var Brewery = BreweryService;
+			Brewery.find().then(function (data) {
+				_brewery.cbFindSuccess(data, $scope);
 			}, function (err) {
-				cbFindError(err, $scope);
+				_brewery.cbFindError(err, $scope);
 			});
 	}])
 	.controller('BreweriesCreateController', ['$scope', '$http',
@@ -57,15 +58,15 @@ angular.module('myApp.controllers', [])
 			var url = 'api/breweries/';
 			var method = 'POST';
 			$scope.message = 'Crate Breweries';
-			$scope.create = function (brewere) {
+			$scope.create = function (brewery) {
 				$http({
 					url: url,
 					method: method,
-					data: brewere
+					data: brewery
 				}).success(function (data) {
 					console.log(data);
 					$scope.data = data;
-					$scope.msg = 'Cerveja ' + brewere.name + ' cadastrada com sucesso';
+					$scope.msg = 'Cerveja ' + brewery.name + ' cadastrada com sucesso';
 				}).error(function (err) {
 					console.log(err);
 					$scope.msg = 'Cerveja não pode ser cadastrada';
@@ -83,12 +84,12 @@ angular.module('myApp.controllers', [])
 				method: method
 			}).success(function (data) {
 				console.log('Breweries: ', data);
-				$scope.brewere = data;
+				$scope.brewery = data;
 			}).error(function (err) {
 				console.log(err);
 			});
-			$scope.remove = function (brewere) {
-				var id = brewere._id;
+			$scope.remove = function (brewery) {
+				var id = brewery._id;
 				var url = 'api/breweries/' + id;
 				var method = 'DELETE';
 				$http({
@@ -96,8 +97,8 @@ angular.module('myApp.controllers', [])
 					method: method
 				}).success(function (data) {
 					console.log(data);
-					$scope.brewere = data;
-					$scope.message = 'Breweries ' + brewere.name + 'removed successfully!';
+					$scope.brewery = data;
+					$scope.message = 'Breweries ' + brewery.name + 'removed successfully!';
 					$location.path('/breweries');
 				}).error(function (err) {
 					console.log(err);
@@ -117,20 +118,20 @@ angular.module('myApp.controllers', [])
 				method: method
 			}).success(function (data) {
 				console.log(data);
-				$scope.brewere = data;
+				$scope.brewery = data;
 			}).error(function (err) {
 				console.log(err);
 			});
-			$scope.update = function (brewere) {
+			$scope.update = function (brewery) {
 				var method = 'PUT';
 				$http({
 					url: url,
 					method: method,
-					data: brewere
+					data: brewery
 				}).success(function (data) {
 					console.log(data);
 					$scope.data = data;
-					$scope.msg = 'Breweries ' + brewere.name + ' update successfully';
+					$scope.msg = 'Breweries ' + brewery.name + ' update successfully';
 				}).error(function (err) {
 					console.log(err);
 					$scope.msg = 'Breweries cant be updated';
@@ -147,10 +148,10 @@ angular.module('myApp.controllers', [])
 				method: method,
 				url: url
 			}).success(function (data) {
-				$scope.brewere = data;
-				$scope.msg = 'About ' + $scope.brewere.name;
+				$scope.brewery = data;
+				$scope.msg = 'About ' + $scope.brewery.name;
 			}).error(function (data) {
-				$scope.msg = 'Error in get brewere';
+				$scope.msg = 'Error in get brewery';
 			});
 			$scope.remove = function (cerveja) {
 				var method = 'DELETE';
