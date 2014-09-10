@@ -35,7 +35,7 @@ angular.module('controllers.Beers', [])
 		});
 	})
 	.controller('RemoveBeer', ['$scope', '$http', 'BeerService',
-		function ($scope, $http, BeerService) {
+  function ($scope, $http, BeerService) {
 			var Beer = BeerService;
 			$scope.remove = function (beer) {
 				if (confirm('Are you sure? Beer ' + beer.name + ' will be removed.')) {
@@ -48,10 +48,9 @@ angular.module('controllers.Beers', [])
 					});
 				}
 			}
-		}])
+  }])
 	.controller('BeerListController', ['$scope', '$http', 'BeerService',
-		function ($scope, $http, BeerService) {
-			console.log('entrou');
+  function ($scope, $http, BeerService) {
 			var Beer = BeerService;
 			Beer.find().then(function (data) {
 				console.log('find', data);
@@ -62,10 +61,10 @@ angular.module('controllers.Beers', [])
 			$scope.atualizarBeers = function (beers) {
 				$scope.beers = beers;
 				console.log('atualizarBeers beers', $scope.beers);
-			}
-		}])
+			};
+  }])
 	.controller('BeerCreateController', ['$scope', '$http',
-		function ($scope, $http) {
+  function ($scope, $http) {
 			var url = 'api/beers/';
 			var method = 'POST';
 			$scope.message = 'Crate Beer';
@@ -84,10 +83,10 @@ angular.module('controllers.Beers', [])
 					console.log(err);
 					$scope.msg = 'Cerveja não pode ser cadastrada';
 				});
-			}
-	}])
-	.controller('BeerShowController', ['$scope', '$http', '$routeParams', '$location',
-		function ($scope, $http, $routeParams, $location) {
+			};
+ }])
+	.controller('BeerShowController', ['$scope', '$rootScope', '$http', '$routeParams', '$location',
+  function ($scope, $rootScope, $http, $routeParams, $location) {
 			var id = $routeParams.id;
 			var url = 'api/beers/_id/' + id;
 			var method = 'GET';
@@ -125,18 +124,16 @@ angular.module('controllers.Beers', [])
 					console.log(err);
 					$scope.message = 'Beer cant be removed!';
 				});
+			};
+			$scope.edit = function () {
+				$rootScope.tab = 'cadBeers'
 			}
-
-  }]).
-controller('BeerEditController', ['$scope', '$http', '$routeParams',
-    function ($scope, $http, $routeParams) {
-
+}]).
+controller('BeerEditController', ['$scope', '$rootScope', '$http', '$routeParams', '$location',
+  function ($scope, $rootScope, $http, $routeParams, $location) {
 		var id = $routeParams.id;
 		var url = 'api/beers/_id/' + id;
 		var method = 'GET';
-
-		$scope.message = 'Update Beer';
-		// Pega os valores da cerveja a ser alterada
 		$http({
 			url: url,
 			method: method
@@ -150,9 +147,7 @@ controller('BeerEditController', ['$scope', '$http', '$routeParams',
 		});
 
 		$scope.update = function (beer) {
-
 			var method = 'PUT';
-
 			$http({
 				url: url,
 				method: method,
@@ -162,6 +157,7 @@ controller('BeerEditController', ['$scope', '$http', '$routeParams',
 				console.log(data);
 				$scope.data = data;
 				$scope.message = 'Beer ' + beer.name + ' update successfully';
+				//$location.path('/beers');
 			}).
 			error(function (err) {
 				console.log(err);

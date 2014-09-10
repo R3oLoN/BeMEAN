@@ -1,12 +1,10 @@
 h3.title List of Beers
 //- p.message= msg
 
-h4 Beers
-{{ beers }}
 
 ul
     li(data-ng-repeat='beer in beers')
-        a(href='/beers/{{beer._id}}') {{beer.name}}
-        a(href='/beers/{{beer._id}}/edit')
+        a(href='/beers/{{beer._id}}', data-ng-click="$rootScope.tab = 'cadBeers'") {{beer.name}}
+        a(href='/beers/{{beer._id}}/edit', data-ng-click="$rootScope.tab = 'cadBeers'") Editar
         span(data-ng-controller='RemoveBeer')
             button(data-ng-click='remove(beer)') REMOVER

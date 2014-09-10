@@ -67,4 +67,13 @@ value('version', '0.1')
 				return $http.delete(urlBase + '/_id/' + data._id, data)
 			};
 		}
-]);
+	])
+	.service('MenuService', ['$rootScope',
+		function ($rootScope) {
+			return {
+				active: 'beers',
+				setActive: function (tab) {
+					this.active = tab;
+				}
+			};
+ }]);

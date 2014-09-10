@@ -1,11 +1,11 @@
 h3.title List of Beers
-p.message= msg
+//-p.message= msg
 
 ul
   li(data-ng-repeat='brewery in breweries')
-    a(href='/breweries/{{brewery._id}}')
+    a(href='/breweries/{{brewery._id}}', data-ng-click="$rootScope.tab = 'cadBreweries'")
       | {{brewery.name}}
-    a(href='/breweries/{{brewery._id}}/edit')
+    a(href='/breweries/{{brewery._id}}/edit', data-ng-click="$rootScope.tab = 'cadBreweries'")
     span(data-ng-controller='RemoveBreweries')
       button(data-ng-click='remove(brewery)') REMOVER
 

@@ -15,8 +15,14 @@ var BeerSchema = new Schema({
     alcohol: {type: Number, min: 0},
     category: {type: String, default: ''},
     created: {type: Date, default: Date.now}
+	brewery: [{type: Number, ref: 'Brewery'}]
+});
+var BrewerySchema = new Schema({
+    name: {type: String, default: ''},
+	beers:[{type: Schema.Types.ObjectId, ref: 'Beer'}]
 });
 var Beer = mongoose.model('Beer', BeerSchema);
+var Brewery = mongoose.model('Brewery', BrewerySchema);
 var query = {
     name: 'Heineken'
 };

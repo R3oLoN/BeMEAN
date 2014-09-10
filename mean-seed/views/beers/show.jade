@@ -14,7 +14,7 @@ p
   span Description:
   span {{beer.description}}
   br
-  a(href='/beers/{{beer._id}}/edit') Edit
+  a(href='/beers/{{beer._id}}/edit', data-ng-click="edit()") Edit
   br
   a(href='/beers/{{beer._id}}/remove') Remove
 

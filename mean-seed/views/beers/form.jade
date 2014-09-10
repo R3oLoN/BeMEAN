@@ -1,4 +1,6 @@
 form
+    .alert.alert-success(role="alert", data-ng-show="message.length > 0")
+        p {{message}}
     .form-group
         label Name:
         input.form-control(name='name', data-ng-model='beer.name')
