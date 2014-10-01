@@ -9,7 +9,7 @@ value('version', '0.1')
 	.factory('BeerFactory', ['$http',
 		function ($http) {
 			var dataFactory = {};
-			var urlBase = 'api/beers'
+			var urlBase = 'api/beers';
 			dataFactory.find = function () {
 				return $http.get(urlBase);
 			};
@@ -20,10 +20,10 @@ value('version', '0.1')
 				return $http.post(urlBase, data);
 			};
 			dataFactory.update = function (data) {
-				return $http.put(urlBase + '/_id/' + data.ID, data)
+				return $http.put(urlBase + '/_id/' + data.ID, data);
 			};
 			dataFactory.remove = function (data) {
-				return $http.delete(urlBase + '/_id/' + data.ID, data)
+				return $http.delete(urlBase + '/_id/' + data.ID, data);
 			};
 			return dataFactory;
 		}
@@ -41,10 +41,10 @@ value('version', '0.1')
 				return $http.post(urlBase, data);
 			};
 			this.update = function (data) {
-				return $http.put(urlBase + '/_id/' + data._id, data)
+				return $http.put(urlBase + '/_id/' + data._id, data);
 			};
 			this.remove = function (data) {
-				return $http.delete(urlBase + '/_id/' + data._id, data)
+				return $http.delete(urlBase + '/_id/' + data._id, data);
 			};
 		}
 	])
@@ -61,19 +61,10 @@ value('version', '0.1')
 				return $http.post(urlBase, data);
 			};
 			this.update = function (data) {
-				return $http.put(urlBase + '/_id/' + data._id, data)
+				return $http.put(urlBase + '/_id/' + data._id, data);
 			};
 			this.remove = function (data) {
-				return $http.delete(urlBase + '/_id/' + data._id, data)
+				return $http.delete(urlBase + '/_id/' + data._id, data);
 			};
 		}
-	])
-	.service('MenuService', ['$rootScope',
-		function ($rootScope) {
-			return {
-				active: 'beers',
-				setActive: function (tab) {
-					this.active = tab;
-				}
-			};
- }]);
+	]);

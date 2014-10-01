@@ -42,7 +42,7 @@ angular.module('controllers.Breweries', [])
 						$scope.status = 'Unable to load breweries: ' + error.message;
 					});
 				}
-			}
+			};
 	}])
 	.controller('BreweriesListController', ['$scope', '$http', 'BreweryService',
 		function ($scope, $http, BreweryService) {
@@ -71,7 +71,7 @@ angular.module('controllers.Breweries', [])
 					console.log(err);
 					$scope.msg = 'Cerveja não pode ser cadastrada';
 				});
-			}
+			};
 	}])
 	.controller('BreweriesShowController', ['$scope', '$http', '$routeParams', '$location',
 		function ($scope, $http, $routeParams, $location) {
@@ -104,7 +104,7 @@ angular.module('controllers.Breweries', [])
 					console.log(err);
 					$scope.message = 'Breweries cant be removed!';
 				});
-			}
+			};
 	}])
 	.controller('BreweriesEditController', ['$scope', '$http', '$routeParams',
 		function ($scope, $http, $routeParams) {
@@ -136,7 +136,7 @@ angular.module('controllers.Breweries', [])
 					console.log(err);
 					$scope.msg = 'Breweries cant be updated';
 				});
-			}
+			};
 	}])
 	.controller('BreweriesRemoveController', ['$scope', '$http', '$routeParams',
 		function ($scope, $http, $routeParams) {
@@ -167,5 +167,5 @@ angular.module('controllers.Breweries', [])
 						$scope.msg = 'ERROR on DELETE';
 					});
 				}
-			}
+			};
 	}]);

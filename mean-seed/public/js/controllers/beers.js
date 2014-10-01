@@ -47,7 +47,7 @@ angular.module('controllers.Beers', [])
 						$scope.status = 'Unable to load beers: ' + error.message;
 					});
 				}
-			}
+			};
   }])
 	.controller('BeerListController', ['$scope', '$http', 'BeerService',
   function ($scope, $http, BeerService) {
@@ -125,9 +125,6 @@ angular.module('controllers.Beers', [])
 					$scope.message = 'Beer cant be removed!';
 				});
 			};
-			$scope.edit = function () {
-				$rootScope.tab = 'cadBeers'
-			}
 }]).
 controller('BeerEditController', ['$scope', '$rootScope', '$http', '$routeParams', '$location',
   function ($scope, $rootScope, $http, $routeParams, $location) {
@@ -163,7 +160,7 @@ controller('BeerEditController', ['$scope', '$rootScope', '$http', '$routeParams
 				console.log(err);
 				$scope.msg = 'Beer cant be updated';
 			});
-		}
+		};
   }]).
 controller('BeerRemoveController', ['$scope', '$http', '$routeParams',
     function ($scope, $http, $routeParams) {
@@ -199,8 +196,7 @@ controller('BeerRemoveController', ['$scope', '$http', '$routeParams',
 					.error(function (data) {
 						$scope.msg = 'ERROR on DELETE';
 					});
-
 			}
-		}
+		};
 
   }]);
